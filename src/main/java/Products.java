@@ -6,4 +6,8 @@ public class Products {
         this.article = article;
         this.name = name;
     }
+
+    public String nameArticle(){
+        return article + " " + name;
+    }
 }
