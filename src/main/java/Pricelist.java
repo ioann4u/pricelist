@@ -1,24 +1,29 @@
 import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+
 
 public class Pricelist {
-    //private int article;
-    //private String name;
-    //private double cost;
-    //private static TreeMap<> data;
-    private static HashMap<Integer, String> pl = new HashMap<Integer, String>();
+    private static HashMap<Id, Data> priceCurrent = new HashMap<Id, Data>();
 
     //add - добавляет запись по заданным id и продуктам
-    private static void add(Integer id, String productAndPrice) {
-        pl.put(id, productAndPrice);
+    private static void add(Id identify, Data data) {
+        priceCurrent.put(identify, data);
     }
-
 
     //del - удаляет записи по id
-    private static void del(Integer id) {
-        pl.remove(id);
+    private static void del(Id identify) {
+        priceCurrent.remove(identify);
     }
 
-    //private static void
+
+    public static void change(Id identify, Data newData){
+        priceCurrent.replace(identify,newData);
+    }
+
+
+    public static String find(Id identify) {
+        Data result = priceCurrent.get(identify);
+        if (result == null) return "Такого продукта нет";
+        return result.toString();
+    }
+
 }
