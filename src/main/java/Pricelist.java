@@ -32,9 +32,10 @@ public class Pricelist {
         return priceCurrent;
     }
 
-    //@Override
-    //public String toString() {
-    //}
+    @Override
+    public String toString() {
+        return priceCurrent.toString();
+    }
 
     @Override
     public boolean equals(Object full) {
