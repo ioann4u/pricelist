@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 
 public class Pricelist {
@@ -15,8 +17,8 @@ public class Pricelist {
     }
 
 
-    public static void change(Id identify, Data newData){
-        priceCurrent.replace(identify,newData);
+    public static void change(Id identify, Data newData) {
+        priceCurrent.replace(identify, newData);
     }
 
 
@@ -26,4 +28,28 @@ public class Pricelist {
         return result.toString();
     }
 
+    public Map<Id, Data> getPriceList() {
+        return priceCurrent;
+    }
+
+    //@Override
+    //public String toString() {
+    //}
+
+    @Override
+    public boolean equals(Object full) {
+        if (full == this) {
+            return true;
+        }
+        if (full == null || full.getClass() != this.getClass()) {
+            return false;
+        }
+        Pricelist another = (Pricelist) full;
+        return priceCurrent.hashCode() == another.getPriceList().hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(priceCurrent);
+    }
 }
