@@ -4,7 +4,7 @@ import java.util.Objects;
 
 
 public class Pricelist {
-    private static HashMap<Id, Data> priceCurrent = new HashMap<Id, Data>();
+    private HashMap<Id, Data> priceCurrent = new HashMap<Id, Data>();
 
     //add - добавляет запись по заданным id и продуктам
     public void add(Id identify, Data data) {
@@ -17,12 +17,12 @@ public class Pricelist {
     }
 
 
-    public static void change(Id identify, Data newData) {
+    public void change(Id identify, Data newData) {
         priceCurrent.replace(identify, newData);
     }
 
 
-    public static String find(Id identify) {
+    public String find(Id identify) {
         Data result = priceCurrent.get(identify);
         if (result == null) return "Такого продукта нет";
         return result.toString();
@@ -32,10 +32,16 @@ public class Pricelist {
         return priceCurrent;
     }
 
+    /**
+    //toString пока не готов.
     @Override
     public String toString() {
-        return priceCurrent.toString();
+        StringBuilder priceCurrentStr = new StringBuilder();
+        priceCurrentStr.append(new Pricelist());
+        return priceCurrentStr.toString();
     }
+     */
+
 
     @Override
     public boolean equals(Object full) {
