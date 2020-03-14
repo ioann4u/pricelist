@@ -7,12 +7,12 @@ public class Pricelist {
     private static HashMap<Id, Data> priceCurrent = new HashMap<Id, Data>();
 
     //add - добавляет запись по заданным id и продуктам
-    private static void add(Id identify, Data data) {
+    public void add(Id identify, Data data) {
         priceCurrent.put(identify, data);
     }
 
     //del - удаляет записи по id
-    private static void del(Id identify) {
+    public void del(Id identify) {
         priceCurrent.remove(identify);
     }
 
