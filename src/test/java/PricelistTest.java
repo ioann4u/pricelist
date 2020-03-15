@@ -35,6 +35,7 @@ class PricelistTest {
         assertEquals("0: Apples - 200 руб. 0 коп.\n" + "1: Bananas - 200 руб. 0 коп.\n", information.toString());
     }
     /**
+     *
     @Test
     void changeName() {
         Pricelist information = new Pricelist();
