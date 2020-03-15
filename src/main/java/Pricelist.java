@@ -20,7 +20,7 @@ public class Pricelist {
         priceCurrent.replace(identify, newData);
     }
 
-    public void changeName(Id newIdentify, Data data) { priceCurrent.replace(newIdentify, data); }
+    public void changeName(Data data, Id newIdentify) { priceCurrent.replace(newIdentify, data); }
 
    public void sum(Data rubles, Data penny) {
         int priceRubles = 0;
