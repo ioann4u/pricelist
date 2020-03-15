@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 public class Pricelist {
@@ -42,7 +40,6 @@ public class Pricelist {
 
 
 
-    //toString пока не готов.
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
