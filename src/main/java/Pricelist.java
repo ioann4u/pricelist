@@ -22,10 +22,11 @@ public class Pricelist {
 
     public void changeName(Id newIdentify, Data data) { priceCurrent.replace(newIdentify, data); }
 
-/**    public void sum(Data rubles, Data penny) {
-
+   public void sum(Data rubles, Data penny) {
+        int priceRubles = 0;
+        int pricePenny = 0;
     }
-*/
+
     /**
      * В задании вроде не нужно искать товар.
     public String find(Id identify) {
@@ -44,10 +45,13 @@ public class Pricelist {
     //toString пока не готов.
     @Override
     public String toString() {
-        /** StringBuilder priceCurrentStr = new StringBuilder();
-        priceCurrentStr.append(new Pricelist());
-        */
-        return priceCurrent.toString();
+        StringBuilder result = new StringBuilder();
+
+        for (Map.Entry<Id, Data> res: priceCurrent.entrySet()){
+            result.append(res.getKey()).append(res.getValue());
+        }
+
+        return result.toString();
     }
 
 
