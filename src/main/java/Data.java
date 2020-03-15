@@ -7,25 +7,27 @@ public class Data {
     private int penny;
 
     public Data(int rubles, int penny) {
-
         this.rubles = rubles;
         this.penny = penny;
-
-        if (rubles <= 0 || penny <= 0) return;
     }
 
 
     public int getRubles() {
+        if (rubles == 0 && penny == 0) throw new IllegalArgumentException("Price cannot be zero");
+        if (rubles < 0) throw new IllegalArgumentException("Rubles cannot be less than zero");
         return rubles;
     }
 
     public int getPenny() {
+        if (rubles == 0 && penny == 0) throw new IllegalArgumentException("Price cannot be zero");
+        if (penny < 0) throw new IllegalArgumentException("Penny cannot be less than zero");
+        if (penny > 99) throw new IllegalArgumentException("Penny cannot be more than ninety nine");
         return penny;
     }
 
     @Override
     public String toString() {
-        return rubles + " руб. " + penny + " коп.";
+        return rubles + " руб. " + penny + " коп.\n";
     }
 
     @Override

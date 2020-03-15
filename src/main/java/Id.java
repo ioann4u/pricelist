@@ -8,14 +8,15 @@ public class Id {
     public Id(int id, String name) {
         this.id = id;
         this.name = name;
-        if (id < 0) return;
     }
 
     public int getId() {
+        if (id < 0) throw new IllegalArgumentException("Id cannot be less than zero");
         return id;
     }
 
     public String getName() {
+        if (name == "" || name == " ") throw new IllegalArgumentException("Name cannot be empty");
         return name;
     }
 

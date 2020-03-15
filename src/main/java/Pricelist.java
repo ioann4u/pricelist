@@ -16,31 +16,40 @@ public class Pricelist {
         priceCurrent.remove(identify);
     }
 
-
-    public void change(Id identify, Data newData) {
+    public void changePrice(Id identify, Data newData) {
         priceCurrent.replace(identify, newData);
     }
 
+    public void changeName(Id newIdentify, Data data) { priceCurrent.replace(newIdentify, data); }
 
+/**    public void sum(Data rubles, Data penny) {
+
+    }
+*/
+    /**
+     * В задании вроде не нужно искать товар.
     public String find(Id identify) {
         Data result = priceCurrent.get(identify);
         if (result == null) return "Такого продукта нет";
         return result.toString();
     }
+     */
 
     public Map<Id, Data> getPriceList() {
         return priceCurrent;
     }
 
-    /**
+
+
     //toString пока не готов.
     @Override
     public String toString() {
-        StringBuilder priceCurrentStr = new StringBuilder();
+        /** StringBuilder priceCurrentStr = new StringBuilder();
         priceCurrentStr.append(new Pricelist());
-        return priceCurrentStr.toString();
+        */
+        return priceCurrent.toString();
     }
-     */
+
 
 
     @Override

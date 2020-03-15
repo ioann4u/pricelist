@@ -3,11 +3,11 @@ import org.junit.jupiter.api.Test;
 
 class PricelistTest {
 
-    Id firstId = new Id(0);
-    Id secondId = new Id(1);
+    Id firstId = new Id(0, "Apples");
+    Id secondId = new Id(1, "Bananas");
 
-    Data firstData = new Data("Apples", 150, 50);
-    Data secondData = new Data("Bananas", 200, 00);
+    Data firstData = new Data( 150, 50);
+    Data secondData = new Data( 200, 00);
 
     @Test
     void add() {
