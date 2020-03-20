@@ -2,7 +2,7 @@ import java.util.*;
 
 
 public class Pricelist {
-    private HashMap<Id, Data> priceCurrent = new HashMap<Id, Data>();
+    private static HashMap<Id, Data> priceCurrent = new HashMap<Id, Data>();
 
     //add - добавляет запись по заданным id и продуктам
     public void add(Id identify, Data data) {
@@ -20,9 +20,22 @@ public class Pricelist {
 
     public void changeName(Data data, Id newIdentify) { priceCurrent.replace(newIdentify, data); }
 
-   public void sum(Data rubles, Data penny) {
-        int priceRubles = 0;
-        int pricePenny = 0;
+    /**
+    public Map<Id, Data> sum (Map<Integer, Integer> receipt) {
+
+    }
+
+     */
+
+    public static String[] find(String name){
+        List <String> result = new ArrayList<String>();
+        for (Map.Entry entry : priceCurrent.entrySet()) {
+            if (name.equalsIgnoreCase((String)entry.getValue())){
+                result.add((String)entry.getKey());
+            }
+        }
+        if (result.size() == 0) result.add("Такого продукта нет");
+        return result.toArray(new String[0]);
     }
 
     /**

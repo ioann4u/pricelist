@@ -1,4 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PricelistTest {
@@ -26,6 +28,8 @@ class PricelistTest {
         information.del(firstId);
         assertEquals("1: Bananas - 200 руб. 0 коп.\n", information.toString());
         System.out.println(true);
+
+        //Assertions.assertThrows(IllegalArgumentException.class, () -> )
     }
 
     @Test
