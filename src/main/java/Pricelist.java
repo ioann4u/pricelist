@@ -27,30 +27,10 @@ public class Pricelist {
 
      */
 
-    public static String[] find(String name){
-        List <String> result = new ArrayList<String>();
-        for (Map.Entry entry : priceCurrent.entrySet()) {
-            if (name.equalsIgnoreCase((String)entry.getValue())){
-                result.add((String)entry.getKey());
-            }
-        }
-        if (result.size() == 0) result.add("Такого продукта нет");
-        return result.toArray(new String[0]);
-    }
-
-    /**
-     * В задании вроде не нужно искать товар.
-    public String find(Id identify) {
-        Data result = priceCurrent.get(identify);
-        if (result == null) return "Такого продукта нет";
-        return result.toString();
-    }
-     */
 
     public Map<Id, Data> getPriceList() {
         return priceCurrent;
     }
-
 
 
     @Override
@@ -75,7 +55,7 @@ public class Pricelist {
             return false;
         }
         Pricelist another = (Pricelist) full;
-        return priceCurrent.hashCode() == another.getPriceList().hashCode();
+        return priceCurrent.equals(priceCurrent);
     }
 
     @Override
