@@ -6,11 +6,7 @@ public class Pricelist {
 
     //add - добавляет запись по заданным id и продуктам
     void add(Id identify, Data data) {
-
         priceCurrent.put(identify, data);
-        //if (priceCurrent.isEmpty()) {
-//            throw new IllegalArgumentException("price current can't be empty");
-        //}
     }
 
     //del - удаляет записи по id
