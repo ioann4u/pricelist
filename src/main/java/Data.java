@@ -6,7 +6,7 @@ public class Data {
     private int rubles;
     private int penny;
 
-    public Data(int rubles, int penny) {
+    Data(int rubles, int penny) {
         this.rubles = rubles;
         this.penny = penny;
     }

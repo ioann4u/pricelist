@@ -2,10 +2,10 @@ import java.util.Objects;
 
 public class Id {
 
-    public int id;
+    private int id;
     private String name;
 
-    public Id(int id, String name) {
+    Id(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -16,7 +16,7 @@ public class Id {
     }
 
     public String getName() {
-        if (name == "" || name == " ") throw new IllegalArgumentException("Name cannot be empty");
+        if (name.equals("") || name.equals(" ")) throw new IllegalArgumentException("Name cannot be empty");
         return name;
     }
 

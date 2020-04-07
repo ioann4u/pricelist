@@ -5,48 +5,52 @@ public class Pricelist {
     private static HashMap<Id, Data> priceCurrent = new HashMap<Id, Data>();
 
     //add - добавляет запись по заданным id и продуктам
-    public void add(Id identify, Data data) {
-        if (priceCurrent.isEmpty()) {
-            throw new IllegalArgumentException("price current can't be empty");
-        }
+    void add(Id identify, Data data) {
+
         priceCurrent.put(identify, data);
+        //if (priceCurrent.isEmpty()) {
+//            throw new IllegalArgumentException("price current can't be empty");
+        //}
     }
 
     //del - удаляет записи по id
-    public void del(Id identify) {
+    void del(Id identify) {
         priceCurrent.remove(identify);
     }
 
-    public void changePrice(Id identify, Data newData) {
+    void changePrice(Id identify, Data newData) {
         priceCurrent.replace(identify, newData);
     }
 
-    public void changeName(Data data, Id newIdentify) { priceCurrent.replace(newIdentify, data); }
+    //void changeName(Id oldName, Id newName) {
+      //  priceCurrent.replace(oldName, newName);
+    //}
+/**
+    public double sum(Map<Id, Integer> receipt) {
 
-    /**
-    public Map<Id, Data> sum (Map<Integer, Integer> receipt) {
-
+        double finalPrice = 0.0;
+        for (Map.Entry<Id, Integer> res : receipt.entrySet()) {
+            finalPrice += priceCurrent.get();
+        }
+        return finalPrice;
     }
-
-     */
-
-
+*/
     public Map<Id, Data> getPriceList() {
         return priceCurrent;
     }
+
 
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
 
-        for (Map.Entry<Id, Data> res: priceCurrent.entrySet()){
+        for (Map.Entry<Id, Data> res : priceCurrent.entrySet()) {
             result.append(res.getKey()).append(res.getValue());
         }
 
         return result.toString();
     }
-
 
 
     @Override
@@ -58,7 +62,7 @@ public class Pricelist {
             return false;
         }
         Pricelist another = (Pricelist) full;
-        return priceCurrent.equals(priceCurrent);
+        return Objects.equals(priceCurrent, another.priceCurrent);
     }
 
     @Override
