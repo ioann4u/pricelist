@@ -34,11 +34,11 @@ public class Id {
             return false;
         }
         Id newId = (Id) identity;
-        return id == newId.id  && Objects.equals(name, newId.name);
+        return id == newId.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 }

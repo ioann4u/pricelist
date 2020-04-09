@@ -6,7 +6,11 @@ public class Pricelist {
 
     //add - добавляет запись по заданным id и продуктам
     void add(Id identify, Data data) {
+
         priceCurrent.put(identify, data);
+        //if (priceCurrent.isEmpty()) {
+//            throw new IllegalArgumentException("price current can't be empty");
+        //}
     }
 
     //del - удаляет записи по id
@@ -18,23 +22,23 @@ public class Pricelist {
         priceCurrent.replace(identify, newData);
     }
 
-    //void changeName(Id oldName, Id newName) {
-      //  priceCurrent.replace(oldName, newName);
-    //}
-/**
-    public double sum(Map<Id, Integer> receipt) {
+    void changeName(Id oldName, Data newName) {
+      priceCurrent.replace(oldName, newName);
+    }
+
+    double sum(Map<Integer, Integer> receipt) {
 
         double finalPrice = 0.0;
-        for (Map.Entry<Id, Integer> res : receipt.entrySet()) {
-            finalPrice += priceCurrent.get();
+        Set<Map.Entry<Integer, Integer>> entrySet = receipt.entrySet();
+        for (Map.Entry<Integer, Integer> res : entrySet) {
+            finalPrice += (priceCurrent.get(res.getKey()).getRubles() * res.getValue() + priceCurrent.get(res.getKey()).getPenny() / 100 * res.getValue());
         }
         return finalPrice;
     }
-*/
-    public Map<Id, Data> getPriceList() {
+
+    Map<Id, Data> getPriceList() {
         return priceCurrent;
     }
-
 
 
     @Override

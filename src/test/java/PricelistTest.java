@@ -3,6 +3,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class PricelistTest {
 
     private Id firstId = new Id(0, "Apples");
@@ -54,25 +57,35 @@ class PricelistTest {
         //Assertions.assertThrows();
     }
 
- /**   @Test
+    ///**
+    @Test
     void changeName() {
-        Pricelist information = new Pricelist();
-        information.add(firstId, firstData);
-        information.add(secondId, secondData);
-        information.changeName(secondId, secondData, firstData);
-        assertEquals("0: Apples - 150 руб. 50 коп.\n" + "1: Apples - 200 руб. 0 коп.\n", information.toString());
+        Pricelist actualInfo = new Pricelist();
+        actualInfo.add(firstId, firstData);
+        actualInfo.add(secondId, secondData);
+        actualInfo.changeName(firstId, secondData);
+        Pricelist expectedInfo = new Pricelist();
+        expectedInfo.getPriceList().put(firstId, firstData);
+        expectedInfo.getPriceList().put(firstId, secondData);
+        assertEquals(expectedInfo, actualInfo);
+        System.out.println(actualInfo.toString());
 
         //Assertions.assertThrows();
     }
+    // */
 
+    @Test
+    void sum() {
+        Map<Integer, Integer> actual = new HashMap<>();
+        Pricelist information = new Pricelist();
+        information.add(firstId, firstData);
+        information.add(secondId, secondData);
+        actual.put(0, 1);
+        actual.put(1, 2);
 
+        assertEquals("350,50", information.sum(actual));
+        System.out.print(true);
+    }
 
- @Test void sum() {
- Pricelist information = new Pricelist();
- information.add(firstId, firstData);
- information.add(secondId, secondData);
- information.sum(firstId, firstData)
- }
- */
 
 }
