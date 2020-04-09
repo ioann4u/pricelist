@@ -31,9 +31,9 @@ public class Pricelist {
         double finalPrice = 0.0;
         Set<Map.Entry<Integer, Integer>> entrySet = receipt.entrySet();
         for (Map.Entry<Integer, Integer> res : entrySet) {
-            finalPrice += (priceCurrent.get(res.getKey()).getRubles() * res.getValue() + priceCurrent.get(res.getKey()).getPenny() / 100 * res.getValue());
+            finalPrice += (priceCurrent.get(res.getKey()).getRubles() * res.getValue() * 100 + priceCurrent.get(res.getKey()).getPenny() * res.getValue());
         }
-        return finalPrice;
+        return finalPrice / 100;
     }
 
     Map<Id, Data> getPriceList() {
