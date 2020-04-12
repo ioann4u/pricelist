@@ -11,12 +11,12 @@ public class Id {
     }
 
     public int getId() {
-        if (id < 0) throw new IllegalArgumentException("Id cannot be less than zero");
+        //if (id < 0) throw new IllegalArgumentException("Id cannot be less than zero");
         return id;
     }
 
     public String getName() {
-        if (name.equals("") || name.equals(" ")) throw new IllegalArgumentException("Name cannot be empty");
+        //if (name.equals("") || name.equals(" ")) throw new IllegalArgumentException("Name cannot be empty");
         return name;
     }
 

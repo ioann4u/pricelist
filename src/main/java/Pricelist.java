@@ -2,15 +2,16 @@ import java.util.*;
 
 
 public class Pricelist {
-    private static HashMap<Id, Data> priceCurrent = new HashMap<Id, Data>();
+    private static HashMap<Id, Price> priceCurrent = new HashMap<Id, Price>();
 
     //add - добавляет запись по заданным id и продуктам
-    void add(Id identify, Data data) {
+    void add(Id identify, Price price) {
 
-        priceCurrent.put(identify, data);
-        //if (priceCurrent.isEmpty()) {
-//            throw new IllegalArgumentException("price current can't be empty");
-        //}
+        priceCurrent.put(identify, price);
+        if (priceCurrent.isEmpty()) {
+            throw new IllegalArgumentException("price current can't be empty");
+        }
+        if (identify.getId() < 0) throw new IllegalArgumentException("Id cannot be less than zero");
     }
 
     //del - удаляет записи по id
@@ -18,25 +19,30 @@ public class Pricelist {
         priceCurrent.remove(identify);
     }
 
-    void changePrice(Id identify, Data newData) {
-        priceCurrent.replace(identify, newData);
+    void changePrice(Id identify, Price newPrice) {
+        priceCurrent.replace(identify, newPrice);
     }
 
-    void changeName(Id oldName, Data newName) {
-      priceCurrent.replace(oldName, newName);
+    void changeName(Id oldId, Price price, String name) {
+        if (oldId.getId() < 0) throw new IllegalArgumentException("Id cannot be less than zero");
+
+        Id newId = new Id(oldId.getId(), name);
+        priceCurrent.remove(oldId);
+        priceCurrent.put(newId, price);
     }
 
-    double sum(Map<Integer, Integer> receipt) {
-
-        double finalPrice = 0.0;
-        Set<Map.Entry<Integer, Integer>> entrySet = receipt.entrySet();
-        for (Map.Entry<Integer, Integer> res : entrySet) {
-            finalPrice += (priceCurrent.get(res.getKey()).getRubles() * res.getValue() * 100 + priceCurrent.get(res.getKey()).getPenny() * res.getValue());
+    Double sum(Id id, int count,Sum sum) {
+        Sum currentSum = sum;
+        for (Map.Entry<Id,Price> entry: priceCurrent.entrySet()) {
+            if (entry.getKey().equals(id)) {
+                currentSum.sum += (entry.getValue().getRubles() + entry.getValue().getPenny()/100.0)*count;
+            }
         }
-        return finalPrice / 100;
+        return currentSum.sum;
     }
 
-    Map<Id, Data> getPriceList() {
+
+    Map<Id, Price> getPriceList() {
         return priceCurrent;
     }
 
@@ -45,7 +51,7 @@ public class Pricelist {
     public String toString() {
         StringBuilder result = new StringBuilder();
 
-        for (Map.Entry<Id, Data> res : priceCurrent.entrySet()) {
+        for (Map.Entry<Id, Price> res : priceCurrent.entrySet()) {
             result.append(res.getKey()).append(res.getValue());
         }
 
