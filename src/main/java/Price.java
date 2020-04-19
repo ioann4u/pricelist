@@ -2,26 +2,24 @@ import java.util.Objects;
 
 public class Price {
 
-
     private int rubles;
     private int penny;
 
     Price(int rubles, int penny) {
+        if (rubles < 0) throw new IllegalArgumentException("Rubles cannot be less than zero");
+        if (penny < 0) throw new IllegalArgumentException("Penny cannot be less than zero");
+        if (penny > 99) throw new IllegalArgumentException("Penny cannot be more than ninety nine");
+        if (rubles == 0 && penny == 0) throw new IllegalArgumentException("Price cannot be zero");
+
         this.rubles = rubles;
         this.penny = penny;
     }
 
-
-    public int getRubles() {
-        //if (rubles == 0 && penny == 0) throw new IllegalArgumentException("Price cannot be zero");
-        //if (rubles < 0) throw new IllegalArgumentException("Rubles cannot be less than zero");
+    int getRubles() {
         return rubles;
     }
 
-    public int getPenny() {
-       // if (rubles == 0 && penny == 0) throw new IllegalArgumentException("Price cannot be zero");
-       // if (penny < 0) throw new IllegalArgumentException("Penny cannot be less than zero");
-        // if (penny > 99) throw new IllegalArgumentException("Penny cannot be more than ninety nine");
+    int getPenny() {
         return penny;
     }
 

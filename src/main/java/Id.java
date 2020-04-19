@@ -6,17 +6,20 @@ public class Id {
     private String name;
 
     Id(int id, String name) {
-        this.id = id;
-        this.name = name;
+        if (id >= 0 && (!name.equals("") || !name.equals(" "))) {
+            //if (name.equals("") || name.equals(" ")) throw new IllegalArgumentException("Name cannot be empty");
+
+            this.id = id;
+            this.name = name;
+        }
+        else throw new IllegalArgumentException("Error");
     }
 
-    public int getId() {
-        //if (id < 0) throw new IllegalArgumentException("Id cannot be less than zero");
+    int getId() {
         return id;
     }
 
-    public String getName() {
-        //if (name.equals("") || name.equals(" ")) throw new IllegalArgumentException("Name cannot be empty");
+    String getName() {
         return name;
     }
 
@@ -26,7 +29,7 @@ public class Id {
     }
 
     @Override
-    public boolean equals(Object identity){
+    public boolean equals(Object identity) {
         if (identity == this) {
             return true;
         }

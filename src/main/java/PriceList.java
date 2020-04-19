@@ -1,21 +1,31 @@
 import java.util.*;
 
 
-public class Pricelist {
-    private static HashMap<Id, Price> priceCurrent = new HashMap<Id, Price>();
+public class PriceList {
+    private HashMap<Id, Price> priceCurrent = new HashMap<Id, Price>();
+
+    private double sum;
+
+    double getSum() {
+        return sum;
+    }
+
+    boolean clearSum() {
+        this.sum = 0.0;
+        return true;
+    }
 
     //add - добавляет запись по заданным id и продуктам
     void add(Id identify, Price price) {
-
+        if (price.getRubles() == 0 && price.getPenny() == 0) throw new IllegalArgumentException("Price cannot be zero");
         priceCurrent.put(identify, price);
-        if (priceCurrent.isEmpty()) {
-            throw new IllegalArgumentException("price current can't be empty");
-        }
-        if (identify.getId() < 0) throw new IllegalArgumentException("Id cannot be less than zero");
     }
 
     //del - удаляет записи по id
     void del(Id identify) {
+        if (!priceCurrent.containsKey(identify))
+            throw new IllegalArgumentException("You can't delete an item if it is not");
+
         priceCurrent.remove(identify);
     }
 
@@ -24,21 +34,18 @@ public class Pricelist {
     }
 
     void changeName(Id oldId, Price price, String name) {
-        if (oldId.getId() < 0) throw new IllegalArgumentException("Id cannot be less than zero");
-
         Id newId = new Id(oldId.getId(), name);
         priceCurrent.remove(oldId);
         priceCurrent.put(newId, price);
     }
 
-    Double sum(Id id, int count,Sum sum) {
-        Sum currentSum = sum;
-        for (Map.Entry<Id,Price> entry: priceCurrent.entrySet()) {
+    Double sum(Id id, int count) {
+        for (Map.Entry<Id, Price> entry : priceCurrent.entrySet()) {
             if (entry.getKey().equals(id)) {
-                currentSum.sum += (entry.getValue().getRubles() + entry.getValue().getPenny()/100.0)*count;
+                this.sum += (entry.getValue().getRubles() + entry.getValue().getPenny() / 100.0) * count;
             }
         }
-        return currentSum.sum;
+        return this.sum;
     }
 
 
@@ -67,7 +74,7 @@ public class Pricelist {
         if (full == null || full.getClass() != this.getClass()) {
             return false;
         }
-        Pricelist another = (Pricelist) full;
+        PriceList another = (PriceList) full;
         return Objects.equals(priceCurrent, another.priceCurrent);
     }
 
