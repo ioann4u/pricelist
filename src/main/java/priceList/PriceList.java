@@ -24,10 +24,11 @@ public class PriceList {
                 throw new IllegalArgumentException("priceList.Price cannot be zero");
 
             priceCurrent.put(identify, price);
-
-            for (Map.Entry<Id, Price> entry : priceCurrent.entrySet())
-                if (entry.getKey().getName().equals(identify.getName()))
-                    throw new IllegalArgumentException("You cannot add this item anymore");
+            if (!priceCurrent.isEmpty()) {
+                for (Map.Entry<Id, Price> entry : priceCurrent.entrySet())
+                    if (entry.getKey().getName().equals(identify.getName()))
+                        throw new IllegalArgumentException("You cannot add this item anymore");
+            }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }

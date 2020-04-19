@@ -8,11 +8,16 @@ public class Id {
     private String name;
 
     Id(int id, String name) {
-        if (id < 0) throw new IllegalArgumentException("Id cannot be less than zero");
-        if (name.equals("") || name.equals(" ")) throw new IllegalArgumentException("Name cannot be empty");
-
-        this.id = id;
-        this.name = name;
+        try {
+            //if (id < 0); //throw new NullPointerException("Id cannot be less than zero");
+            //if (name.equals("") || name.equals(" ")); //throw new NullPointerException("Name cannot be empty");
+            if (id >= 0 && (!name.equals("") || !name.equals(" "))) {
+                this.id = id;
+                this.name = name;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     int getId() {
