@@ -1,3 +1,5 @@
+package priceList;
+
 import java.util.Objects;
 
 public class Id {
@@ -6,13 +8,11 @@ public class Id {
     private String name;
 
     Id(int id, String name) {
-        if (id >= 0 && (!name.equals("") || !name.equals(" "))) {
-            //if (name.equals("") || name.equals(" ")) throw new IllegalArgumentException("Name cannot be empty");
+        if (id < 0) throw new IllegalArgumentException("Id cannot be less than zero");
+        if (name.equals("") || name.equals(" ")) throw new IllegalArgumentException("Name cannot be empty");
 
-            this.id = id;
-            this.name = name;
-        }
-        else throw new IllegalArgumentException("Error");
+        this.id = id;
+        this.name = name;
     }
 
     int getId() {

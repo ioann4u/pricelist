@@ -1,3 +1,5 @@
+package priceList;
+
 import java.util.*;
 
 
@@ -17,14 +19,24 @@ public class PriceList {
 
     //add - добавляет запись по заданным id и продуктам
     void add(Id identify, Price price) {
-        if (price.getRubles() == 0 && price.getPenny() == 0) throw new IllegalArgumentException("Price cannot be zero");
-        priceCurrent.put(identify, price);
+        try {
+            if (price.getRubles() == 0 && price.getPenny() == 0)
+                throw new IllegalArgumentException("priceList.Price cannot be zero");
+
+            priceCurrent.put(identify, price);
+
+            for (Map.Entry<Id, Price> entry : priceCurrent.entrySet())
+                if (entry.getKey().getName().equals(identify.getName()))
+                    throw new IllegalArgumentException("You cannot add this item anymore");
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     //del - удаляет записи по id
     void del(Id identify) {
         if (!priceCurrent.containsKey(identify))
-            throw new IllegalArgumentException("You can't delete an item if it is not");
+            throw new IllegalArgumentException("You can't kill what is already dead");
 
         priceCurrent.remove(identify);
     }
@@ -34,9 +46,16 @@ public class PriceList {
     }
 
     void changeName(Id oldId, Price price, String name) {
-        Id newId = new Id(oldId.getId(), name);
-        priceCurrent.remove(oldId);
-        priceCurrent.put(newId, price);
+        try {
+            Id newId = new Id(oldId.getId(), name);
+            priceCurrent.remove(oldId);
+            priceCurrent.put(newId, price);
+
+            if (oldId.getName().equals(newId.getName()))
+                throw new IllegalArgumentException("You cannot add this item anymore");
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     Double sum(Id id, int count) {
